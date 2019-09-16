@@ -1,0 +1,19 @@
+{
+    "candidates": [
+        {
+            "id": 1,
+            "name": "json-server",
+            "party": "typicode"
+        }
+    ],
+    "voters": [
+        {
+            "id": 1,
+            "email": "some comment",
+            "password": 1
+        }
+    ],
+    "votes": {
+        "candidate": "typicode"
+    }
+}
