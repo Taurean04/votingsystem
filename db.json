@@ -18,7 +18,16 @@
       "id": 1
     }
   ],
-  "votes": {
-    "candidate": "typicode"
-  }
+  "votes": [
+    {
+      "candidate": "Bill Gates",
+      "votes": "3",
+      "id": 1
+    },
+    {
+      "candidate": "Tega Oke",
+      "votes": "2",
+      "id": 2
+    }
+  ]
 }
