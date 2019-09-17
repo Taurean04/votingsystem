@@ -101,10 +101,19 @@ $(document).ready(function(){
         method:'GET',
         url: `http://localhost:3000/candidates`,
         success: function(res){
-            console.log(res);
-            // res.forEach(candidate => {
-            //     console.log(candidate.fullname);
-            // });
+            res.forEach(candidate => {
+                const fullname = $('<h3>').addClass('canName').text(candidate.fullname);
+                const party = $('<p>').text(candidate.party)
+                const vote = $('<button>').addClass('voteBtn').text('Vote');
+                $('#content')
+                .append(fullname)
+                .append(party)
+                .append(vote);
+            });
         }
+    })
+    $('voteBtn').click(function(){
+        let name = $('canName').val();
+        console.log(name);
     })
 });
