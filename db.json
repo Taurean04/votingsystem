@@ -1,20 +1,16 @@
 {
-  "candidates": [],
+  "candidates": [
+    {
+      "fullname": "Bill Gates",
+      "party": "1par2y",
+      "id": 1
+    }
+  ],
   "voters": [
     {
-      "email": "checking",
+      "email": "start",
       "password": "again",
       "id": 1
-    },
-    {
-      "email": "work",
-      "password": "twice",
-      "id": 2
-    },
-    {
-      "email": "new",
-      "password": "user",
-      "id": 3
     }
   ],
   "votes": {

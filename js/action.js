@@ -3,8 +3,9 @@ $(document).ready(function(){
         e.preventDefault();
         const email = $('#email').val();
         const password = $('#password').val(); 
-        if (!email || !password) {
-            ('#regMsg').html('Fill in all fields');
+        if ((email.length < 1) || (password.length < 1)) {
+            $('#regMsg').html('Fill in all fields');
+            return;
         }
         $.ajax({
             method: 'GET',
@@ -24,7 +25,7 @@ $(document).ready(function(){
                             password,
                         },
                         success: function(){
-                            ('#regMsg').html('Registration Successful')
+                            $('#regMsg').html('Registration Successful')
                         }
                     });
                 }
@@ -35,8 +36,9 @@ $(document).ready(function(){
         e.preventDefault();
         const fullname = $('#fullname').val();
         const party = $('#party').val(); 
-        if (!email || !password) {
-            ('#canMsg').html('Fill in all fields');
+        if (fullname < 1 || party < 1) {
+            $('#canMsg').html('Fill in all fields');
+            return;
         }
         $.ajax({
             method: 'GET',
@@ -56,11 +58,37 @@ $(document).ready(function(){
                             party,
                         },
                         success: function () {
-                            ('#canMsg').html('Candidate added successfully')
+                            $('#canMsg').html('Candidate added successfully')
                         }
                     });
                 }
             }
         });
     });
+    $('#logForm').submit(function(e){
+        e.preventDefault();
+        const logEmail = $('#email').val();
+        const logPass = $('#password').val();
+        if(!logEmail || !logPass){
+            $('#logMsg').html('Fill in Login Details')
+            return;
+        }
+        $.ajax({
+            method: 'GET',
+            url: `http://localhost:3000/voters?email=${logEmail}&&password=${logPass}`,
+            data: {
+                logEmail,
+                logPass
+            },
+            success: function(res){
+                if(res.length){
+                    $('l#ogMsg').html('Successfully Logged In');
+                    localStorage.setItem('email', logEmail);
+                }else{
+                    $('#logMsg').html('Invalid Email or Password');
+                }
+            }
+        })
+
+    })
 });
