@@ -109,10 +109,12 @@ $(document).ready(function() {
         const vote = $('<button>')
           .addClass('voteBtn')
           .text('Vote');
+          const edit = `&nbsp;&nbsp;<button id="edit">Edit</button>`
         $('#content')
           .append(fullname)
           .append(party)
-          .append(vote);
+          .append(vote)
+          .append(edit);
       });
       $('.voteBtn').click(function() {
         let name = $(this)
@@ -147,6 +149,12 @@ $(document).ready(function() {
             }
         })
       });
+      $('#edit').click(function(){
+        //   let name = $(this)
+        //       .prev()
+        //       .prev();
+        //   let fName = name[0].innerHTML;
+      })
     },
   });
 });
