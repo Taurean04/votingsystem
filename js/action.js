@@ -2,30 +2,65 @@ $(document).ready(function(){
     $('#regForm').submit(function(e){
         e.preventDefault();
         const email = $('#email').val();
-        const password = $('#password').val();
+        const password = $('#password').val(); 
+        if (!email || !password) {
+            ('#regMsg').html('Fill in all fields');
+        }
         $.ajax({
-            method: 'POST',
-            url: 'http://localhost:3000/voters',
-            data: {
+            method: 'GET',
+            url: `http://localhost:3000/voters?email=${email}`,
+            data:{
                 email,
-                password,
+            },
+            success: function(res){
+                if(res.length){
+                    $('#regMsg').html('User already exists');
+                }else{
+                    $.ajax({
+                        method: 'POST',
+                        url: 'http://localhost:3000/voters',
+                        data: {
+                            email,
+                            password,
+                        },
+                        success: function(){
+                            ('#regMsg').html('Registration Successful')
+                        }
+                    });
+                }
             }
-        })
+        });
     });
-});
-
-$(document).ready(function () {
-    $('#regForm').submit(function (e) {
+    $('#canForm').submit(function (e) {
         e.preventDefault();
-        const email = $('#email').val();
-        const password = $('#password').val();
+        const fullname = $('#fullname').val();
+        const party = $('#party').val(); 
+        if (!email || !password) {
+            ('#canMsg').html('Fill in all fields');
+        }
         $.ajax({
-            method: 'POST',
-            url: 'http://localhost:3000/candidates',
+            method: 'GET',
+            url: `http://localhost:3000/candidates?party=${party}`,
             data: {
-                email,
-                password,
+                party,
+            },
+            success: function (res) {
+                if (res.length) {
+                    $('#canMsg').html('Candidate from this party already registered');
+                } else {
+                    $.ajax({
+                        method: 'POST',
+                        url: 'http://localhost:3000/candidates',
+                        data: {
+                            fullname,
+                            party,
+                        },
+                        success: function () {
+                            ('#canMsg').html('Candidate added successfully')
+                        }
+                    });
+                }
             }
-        })
+        });
     });
 });
