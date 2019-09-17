@@ -82,13 +82,19 @@ $(document).ready(function(){
             },
             success: function(res){
                 if(res.length){
-                    $('l#ogMsg').html('Successfully Logged In');
+                    $('#logMsg').html('Successfully Logged In');
+                    $('#checkLog').html('Voter Logged in');
                     localStorage.setItem('email', logEmail);
+                    window.location.assign('index.html');
                 }else{
                     $('#logMsg').html('Invalid Email or Password');
                 }
             }
         })
-
+    })
+    $('logout').click(function(){
+        localStorage.clear();
+        $('#checkLog').html('Logged out');
+        window.location.assign('login.html');
     })
 });

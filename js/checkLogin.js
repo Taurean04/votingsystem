@@ -4,6 +4,6 @@ $(document).ready(function(){
         $('#checkLog').html('You are logged in');
     }else{
         $('#checkLog').html('Please log in');
-        window.location.assign('register.html');
+        window.location.assign('login.html');
     }
 });
