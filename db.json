@@ -4,6 +4,11 @@
       "fullname": "Bill Gates",
       "party": "1par2y",
       "id": 1
+    },
+    {
+      "fullname": "Tega Oke",
+      "party": "decagon",
+      "id": 2
     }
   ],
   "voters": [

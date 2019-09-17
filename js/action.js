@@ -92,9 +92,19 @@ $(document).ready(function(){
             }
         })
     })
-    $('logout').click(function(){
+    $('.logoutBtn').click(function(){
         localStorage.clear();
         $('#checkLog').html('Logged out');
         window.location.assign('login.html');
+    });
+    $.ajax({
+        method:'GET',
+        url: `http://localhost:3000/candidates`,
+        success: function(res){
+            console.log(res);
+            // res.forEach(candidate => {
+            //     console.log(candidate.fullname);
+            // });
+        }
     })
 });
