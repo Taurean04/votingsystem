@@ -168,6 +168,45 @@ $(document).ready(function() {
           .append(party)
           .append(edit)
       });
+      $('.editBtn').click(function() {
+        let name = $(this)
+          .prev()
+          .prev();
+        let fName = name[0].innerHTML;
+        $.ajax({
+          method: 'GET',
+          url: `http://localhost:3000/candidates?fullname=${fName}`,
+          data:{fName},
+          success: function(res){
+              if(res.length){
+                  let id = res[0].id;
+                  let fullname = $('#fullname').val();
+                  let party = $('#party').val();
+                  let values = {
+                    fullname: res[0].fullname,
+                    party: res[0].party
+                  };
+                  // $('editForm').;
+                  // $.ajax({
+                  //     type: 'PATCH',
+                  //     url: `http://localhost:3000/candidates/${id}`,
+                  //     data: {
+                  //         votes: addVotes
+                  //     }
+                  // })
+              }else{
+                  // $.ajax({
+                  //     method: 'POST',
+                  //     url: 'http://localhost:3000/votes',
+                  //     data: {
+                  //         candidate: fName,
+                  //         votes: 1
+                  //     }
+                  // })
+              }
+          }
+        })
+      })
     }
   })
 });
