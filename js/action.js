@@ -102,19 +102,18 @@ $(document).ready(function() {
     url: 'http://localhost:3000/candidates',
     success: function(res) {
       res.forEach(candidate => {
-        const fullname = $('<h3>')
-          .addClass('canName')
+        const fullname = $('<h5>')
+          .addClass('card-title')
           .text(candidate.fullname);
-        const party = $('<p>').text(candidate.party);
+        const party = $('<p>').addClass('card-text').text(candidate.party);
         const vote = $('<button>')
           .addClass('voteBtn')
+          .addClass('btn btn-primary')
           .text('Vote');
-          const edit = `&nbsp;&nbsp;<button id="edit">Edit</button>`
-        $('#content')
+        $('#card1')
           .append(fullname)
           .append(party)
           .append(vote)
-          .append(edit);
       });
       $('.voteBtn').click(function() {
         let name = $(this)
@@ -149,12 +148,26 @@ $(document).ready(function() {
             }
         })
       });
-      $('#edit').click(function(){
-        //   let name = $(this)
-        //       .prev()
-        //       .prev();
-        //   let fName = name[0].innerHTML;
-      })
     },
   });
+  $.ajax({
+    method: 'GET',
+    url: 'http://localhost:3000/candidates',
+    success: function(res) {
+      res.forEach(candidate => {
+        const fullname = $('<h5>')
+          .addClass('card-title')
+          .text(candidate.fullname);
+        const party = $('<p>').addClass('card-text').text(candidate.party);
+        const edit = $('<button>')
+          .addClass('editBtn')
+          .addClass('btn btn-primary')
+          .text('Edit Candidate');
+        $('#card2')
+          .append(fullname)
+          .append(party)
+          .append(edit)
+      });
+    }
+  })
 });

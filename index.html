@@ -7,21 +7,25 @@
     <title>Online Voting System</title>
     <link rel="stylesheet" href="./css/css/bootstrap.css">
 </head>
-<nav>
-    <ul>
-        <li>Home</li>
-        <li><a href="candidate.html">Add Candidates</a></li>
-        <li><a href="register.html">Register</a></li>
-        <li><a href="candidate-edit.html">Add Candidates</a></li>
-        <li class="logoutBtn">Logout</li>
+<nav class="navbar navbar-expand-sm bg-light justify-content-center">
+    <ul class="navbar-nav">
+        <li class="navbar-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="navbar-item"><a href="candidate.html" class="nav-link">Add Candidates</a></li>
+        <li class="navbar-item"><a href="register.html" class="nav-link">Register</a></li>
+        <li class="navbar-item"><a href="candidate-edit.html" class="nav-link">Edit Candidates</a></li>
+        <li class="logoutBtn navbar-item"><a class="nav-link">Logout</a></li>
     </ul>
 </nav>
 <body>
-    <h2 id="checkLog"></h2>
-    <h1>Candidates</h1>
-    <main id="content">
-    </main>
-
+    <h1 class="h1 text-muted text-center">Candidates</h1>
+    <div id="container" class="container">
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3 text-center">
+                <div class="card col-sm-6" style="width: 18rem;" id="card1">
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <footer>
     <script src="./js/jquery.js"></script>

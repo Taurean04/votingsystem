@@ -4,16 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Candidates</title>
+    <title>Edit Candidates</title>
     <link rel="stylesheet" href="./css/css/bootstrap.css">
 </head>
 <body>
-    <form action="" method="post" id="editForm">
-        <p id="editMsg"></p>
-        <input type="text" name="fullname" id="fullname" placeholder="Candidate's Fullname">
-        <input type="text" name="party" id="party" placeholder="Candidate's Political Party">
-        <input type="submit" value="Add Candidate" id="addBtn">
-    </form>
+    <h1 class="h1 text-muted text-center">Edit Candidate</h1><br>
+    <div id="container" class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card col-sm-6" style="width: 18rem;" id="card2">
+                </div>
+            </div>
+            <div class="col-sm-6">
+        <form method="POST" id="editForm" class="justify-content-center">
+            <div class="form-group">
+                <p id="editMsg"></p>
+                <div class="col-md-4 mb-3">
+                    <input type="text" name="email" id="email" placeholder="Email Address" class="form-control-sm"><br>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <input type="text" name="party" id="party" placeholder="Party" class="form-control-sm">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <input type="submit" value="Cancel" id="cancel" class="btn btn-primary">
+                </div>
+            </div>
+        </form>   
+        </div>
+    </div>
+</div>
 </body>
 <footer>
     <script src="./js/jquery.js"></script>
