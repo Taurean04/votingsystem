@@ -7,13 +7,28 @@
     <title>Voter Login</title>
     <link rel="stylesheet" href="./css/css/bootstrap.css">
 </head>
-<body>
-    <form method="POST" id="logForm">
-        <p id="logMsg"></p>
-        <input type="text" name="email" id="email" placeholder="Email Address">
-        <input type="password" name="password" id="password">
-        <input type="submit" value="Login" id="Login">
-    </form>
+<body
+    ><div id="container" class="container">
+        <div class="row text-white">
+            <div class="col-sm-6 offset-sm-3 text-center">
+                <h1 class="display-4">Login</h1>
+                <form method="POST" id="logForm" class="justify-content-center">
+                    <div class="form-group">
+                        <p id="logMsg"></p>
+                        <div class="col-md-4 mb-3">
+                            <input type="text" name="email" id="email" placeholder="Email Address" class="form-control-sm"><br>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <input type="password" name="password" id="password" placeholder="Password" class="form-control-sm">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <input type="submit" value="Login" id="Login" class="btn btn-primary">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 <footer>
     <script src="./js/jquery.js"></script>
