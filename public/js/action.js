@@ -114,7 +114,7 @@ $(document).ready(function() {
           .append(fullname)
           .append(party)
           .append(vote)
-          .append('<hr>')
+          .append('<hr>');
       });
       $('.voteBtn').click(function() {
         let name = $(this)
@@ -175,7 +175,8 @@ $(document).ready(function() {
           .append(fullname)
           .append(party)
           .append(edit)
-          .append(del);
+          .append(del)
+          .append('<hr>');
       });
       $('.editBtn').click(function() {
         let name = $(this)
@@ -191,34 +192,28 @@ $(document).ready(function() {
               let id = res[0].id;
               // let fullname = $('#fullname').val();
               // let party = $('#party').val();
-              let nameIn = `<div class="col-md-4 mb-3">
-                <input
+              let nameIn = `<input
                   type="text"
                   name="fullname"
                   id="fullname"
-                  class="form-control-sm"
+                  class="fadeIn second"
                   placeholder="Candidate Name"
                   value="${res[0].fullname}"
-                />
-              </div>`;
-              let partyIn = `<div class="col-md-4 mb-3">
-                <input
+                />`;
+              let partyIn = `<input
                   type="text"
                   name="party"
                   id="party"
                   placeholder="Party"
-                  class="form-control-sm"
+                  class="fadeIn third"
                   value="${res[0].party}"
-                />
-              </div>`;
-              let edit = `<div class="col-md-4 mb-3">
-                <input
+                />`;
+              let edit = `<input
                   type="submit"
                   value="Edit"
                   id="edit"
-                  class="btn btn-primary"
-                />
-              </div>`;
+                  class="fadeIn fourth"
+                />`;
               $('#editForm')
                 .append(nameIn)
                 .append(partyIn)
@@ -244,7 +239,7 @@ $(document).ready(function() {
         });
       });
       $('#cancel').click(function() {
-        'editForm'.fadeOut();
+        window.location.reload();
       });
       $('.delBtn').click(function() {
         let card = $(this)
@@ -275,11 +270,11 @@ $(document).ready(function() {
   $.ajax({
     method: 'GET',
     url: 'http://localhost:3000/candidates',
-    success: function (res) {
+    success: function(res) {
       res.forEach(candidate => {
         let fullname = candidate.fullname;
         let votes = candidate.votes;
-      })
-    }
+      });
+    },
   });
 });
