@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Online Voting System</title>
     <link rel="stylesheet" href="./css/css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/card.css" />
   </head>
   <nav class="navbar navbar-expand-sm bg-light justify-content-center">
@@ -27,10 +28,18 @@
   </nav>
   <body>
     <h1 class="h1 text-muted text-center">Candidates</h1>
-    <div class="timer-container" id="run-timer">
-      <h3><span class="time"></span></h3>
-      <h3 id="vote-display" style="display:none"></h3>
-    </div>
+    <input
+    type="number"
+    name="time"
+    id="time"
+    placeholder="Time"
+    class="fadeIn"
+  />
+  <button
+  id="setBtn"
+  class="btn btn-primary fadeIn">
+Set Voting time</button><br>
+
     <div class="social-box ">
       <div class="container">
         <div class="row">
@@ -41,10 +50,12 @@
         </div>
       </div>
     </div>
+    <h5 id="count" class="text-center font-weight-bold"></h5>
   </body>
   <footer>
     <script src="./js/jquery.js"></script>
     <script src="./js/action.js"></script>
+    <script src="./js/timer.js"></script>
     <script src="./css/js/bootstrap.js"></script>
     <script src="./js/checkLogin.js"></script>
   </footer>
