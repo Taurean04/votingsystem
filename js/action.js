@@ -43,7 +43,7 @@ $(document).ready(function() {
     $.ajax({
       method: 'GET',
       url: `http://localhost:3000/candidates?party=${party}`,
-      data: {party},
+      data: { party },
       success: function(res) {
         if (res.length) {
           $('#canMsg').html('Candidate from this party already registered');
@@ -53,7 +53,7 @@ $(document).ready(function() {
             url: 'http://localhost:3000/candidates',
             data: {
               fullname,
-              party
+              party,
             },
             success: function() {
               $('#canMsg').html('Candidate added successfully');
@@ -122,25 +122,24 @@ $(document).ready(function() {
         let fName = name[0].innerHTML;
         $.ajax({
           method: 'GET',
-          url: `http://localhost:3000/votes?candidate=${fName}`,
+          url: `http://localhost:3000/candidates?fullname=${fName}`,
           data: { fName },
           success: function(res) {
-            if (res.length) {
-              let id = res[0].id;
+            let id = res[0].id;
+            if (res[0].votes) {
               let addVotes = parseInt(res[0].votes) + 1;
               $.ajax({
                 type: 'PATCH',
-                url: `http://localhost:3000/votes/${id}`,
+                url: `http://localhost:3000/candidates/${id}`,
                 data: {
                   votes: addVotes,
                 },
               });
             } else {
               $.ajax({
-                method: 'POST',
-                url: 'http://localhost:3000/votes',
+                type: 'PATCH',
+                url: `http://localhost:3000/candidates/${id}`,
                 data: {
-                  candidate: fName,
                   votes: 1,
                 },
               });
@@ -189,31 +188,62 @@ $(document).ready(function() {
           success: function(res) {
             if (res.length) {
               let id = res[0].id;
-              let fullname = $('#fullname').val();
-              let party = $('#party').val();
-              let values = {
-                fullname: res[0].fullname,
-                party: res[0].party,
-              };
-              // $.ajax({
-              //     type: 'PATCH',
-              //     url: `http://localhost:3000/candidates/${id}`,
-              //     data: {
-              //         votes: addVotes
-              //     }
-              // })
-            } else {
-              // $.ajax({
-              //     method: 'POST',
-              //     url: 'http://localhost:3000/votes',
-              //     data: {
-              //         candidate: fName,
-              //         votes: 1
-              //     }
-              // })
+              // let fullname = $('#fullname').val();
+              // let party = $('#party').val();
+              let nameIn = `<div class="col-md-4 mb-3">
+                <input
+                  type="text"
+                  name="fullname"
+                  id="fullname"
+                  class="form-control-sm"
+                  placeholder="Candidate Name"
+                  value="${res[0].fullname}"
+                />
+              </div>`;
+              let partyIn = `<div class="col-md-4 mb-3">
+                <input
+                  type="text"
+                  name="party"
+                  id="party"
+                  placeholder="Party"
+                  class="form-control-sm"
+                  value="${res[0].party}"
+                />
+              </div>`;
+              let edit = `<div class="col-md-4 mb-3">
+                <input
+                  type="submit"
+                  value="Edit"
+                  id="edit"
+                  class="btn btn-primary"
+                />
+              </div>`;
+              $('#editForm')
+                .append(nameIn)
+                .append(partyIn)
+                .append(edit);
+              $('#edit').click(function(e) {
+                e.preventDefault;
+                let fullname = $('#fullname').val();
+                let party = $('#party').val();
+                $.ajax({
+                  type: 'PATCH',
+                  url: `http://localhost:3000/candidates/${id}`,
+                  data: {
+                    fullname,
+                    party,
+                  },
+                  success: function() {
+                    $('#editMsg').html('Candidated Updated');
+                  },
+                });
+              });
             }
           },
         });
+      });
+      $('#cancel').click(function() {
+        'editForm'.fadeOut();
       });
       $('.delBtn').click(function() {
         let card = $(this)
