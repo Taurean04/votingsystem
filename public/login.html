@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Voter Login</title>
+    <link rel="stylesheet" href="./css/css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm bg-light justify-content-center">
+      <ul class="navbar-nav">
+        <li class="navbar-item">
+          <a href="index.html" class="nav-link">Home</a>
+        </li>
+        <li class="navbar-item">
+          <a href="candidate.html" class="nav-link">Add Candidates</a>
+        </li>
+        <li class="navbar-item">
+          <a href="register.html" class="nav-link">Register</a>
+        </li>
+        <li class="navbar-item">
+          <a href="candidate-edit.html" class="nav-link">Edit Candidates</a>
+        </li>
+        <li class="logoutBtn navbar-item"><a class="nav-link">Logout</a></li>
+      </ul>
+    </nav>
+    <div id="container" class="container">
+      <div class="row">
+        <div class="col-sm-6 offset-sm-3 text-center">
+          <h1 class="display-6">Login</h1>
+          <div class="wrapper fadeInDown">
+            <div id="formContent">
+              <form method="POST" id="logForm">
+                <p id="logMsg"></p>
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  placeholder="Email Address"
+                  class="fadeIn second"
+                />
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                  class="fadeIn third"
+                />
+                <input
+                  type="submit"
+                  value="Login"
+                  id="Login"
+                  class="btn btn-primary fadeIn fourth"
+                />
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <footer>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/action.js"></script>
+  </footer>
+</html>

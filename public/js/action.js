@@ -101,19 +101,20 @@ $(document).ready(function() {
     success: function(res) {
       res.forEach(candidate => {
         const fullname = $('<h5>')
-          .addClass('card-title')
+          .addClass('box-title')
           .text(candidate.fullname);
         const party = $('<p>')
-          .addClass('card-text')
+          .addClass('box-text')
           .text(candidate.party);
         const vote = $('<button>')
           .addClass('voteBtn')
-          .addClass('btn btn-primary')
+          .addClass('btn btn-primary box-btn')
           .text('Vote');
         $('#card1')
           .append(fullname)
           .append(party)
-          .append(vote);
+          .append(vote)
+          .append('<hr>')
       });
       $('.voteBtn').click(function() {
         let name = $(this)
@@ -155,19 +156,19 @@ $(document).ready(function() {
     success: function(res) {
       res.forEach(candidate => {
         const fullname = $('<h5>')
-          .addClass('card-title')
+          .addClass('box-title')
           .text(candidate.fullname);
         const party = $('<p>')
-          .addClass('card-text')
+          .addClass('box-text')
           .text(candidate.party);
         const edit = $('<button>')
           .addClass('editBtn')
-          .addClass('card-link')
+          .addClass('box-btn')
           .addClass('btn btn-primary')
           .text('Edit Candidate');
         const del = $('<button>')
           .addClass('delBtn')
-          .addClass('card-link')
+          .addClass('box-btn')
           .addClass('btn btn-danger')
           .text('Delete');
         $('#card2')
@@ -223,7 +224,7 @@ $(document).ready(function() {
                 .append(partyIn)
                 .append(edit);
               $('#edit').click(function(e) {
-                e.preventDefault;
+                e.preventDefault();
                 let fullname = $('#fullname').val();
                 let party = $('#party').val();
                 $.ajax({
@@ -270,5 +271,15 @@ $(document).ready(function() {
         });
       });
     },
+  });
+  $.ajax({
+    method: 'GET',
+    url: 'http://localhost:3000/candidates',
+    success: function (res) {
+      res.forEach(candidate => {
+        let fullname = candidate.fullname;
+        let votes = candidate.votes;
+      })
+    }
   });
 });

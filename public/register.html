@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register Voters</title>
     <link rel="stylesheet" href="./css/css/bootstrap.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
         <nav class="navbar navbar-expand-sm bg-light justify-content-center">
@@ -20,21 +21,17 @@
     <div id="container" class="container">
         <div class="row">
             <div class="col-sm-6 offset-sm-3 text-center">
-                <h1 class="display-6">Login</h1>
+                <h1 class="display-6">Register</h1>
+                <div class="wrapper fadeInDown">
+                <div id="formContent"></div>
                 <form method="POST" id="regForm" class="justify-content-center">
-                    <div class="form-group">
                         <p id="regMsg"></p>
-                        <div class="col-md-4 mb-3">
-                            <input type="text" name="email" id="email" placeholder="Email Address" class="form-control-sm"><br>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <input type="password" name="password" id="password" placeholder="Password" class="form-control-sm">
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <input type="submit" value="Register" id="register" class="btn btn-primary">
-                        </div>
-                    </div>
+                            <input type="text" name="email" id="email" placeholder="Email Address" class="fadeIn first">
+                            <input type="password" name="password" id="password" placeholder="Password" class="fadeIn second">
+                            <input type="submit" value="Register" id="register" class="btn btn-primary fadeIn third">
                 </form>
+                </div>
+                </div>
             </div>
         </div>
     </div>
