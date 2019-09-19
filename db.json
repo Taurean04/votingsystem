@@ -9,6 +9,11 @@
       "fullname": "Tega Oke",
       "party": "decagon",
       "id": 2
+    },
+    {
+      "fullname": "Tomi Ayobami",
+      "party": "Voting",
+      "id": 3
     }
   ],
   "voters": [
@@ -21,7 +26,7 @@
   "votes": [
     {
       "candidate": "Bill Gates",
-      "votes": "5",
+      "votes": "6",
       "id": 1
     },
     {

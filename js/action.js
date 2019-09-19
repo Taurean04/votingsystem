@@ -43,9 +43,7 @@ $(document).ready(function() {
     $.ajax({
       method: 'GET',
       url: `http://localhost:3000/candidates?party=${party}`,
-      data: {
-        party,
-      },
+      data: {party},
       success: function(res) {
         if (res.length) {
           $('#canMsg').html('Candidate from this party already registered');
@@ -55,7 +53,7 @@ $(document).ready(function() {
             url: 'http://localhost:3000/candidates',
             data: {
               fullname,
-              party,
+              party
             },
             success: function() {
               $('#canMsg').html('Candidate added successfully');
@@ -105,7 +103,9 @@ $(document).ready(function() {
         const fullname = $('<h5>')
           .addClass('card-title')
           .text(candidate.fullname);
-        const party = $('<p>').addClass('card-text').text(candidate.party);
+        const party = $('<p>')
+          .addClass('card-text')
+          .text(candidate.party);
         const vote = $('<button>')
           .addClass('voteBtn')
           .addClass('btn btn-primary')
@@ -113,7 +113,7 @@ $(document).ready(function() {
         $('#card1')
           .append(fullname)
           .append(party)
-          .append(vote)
+          .append(vote);
       });
       $('.voteBtn').click(function() {
         let name = $(this)
@@ -121,32 +121,32 @@ $(document).ready(function() {
           .prev();
         let fName = name[0].innerHTML;
         $.ajax({
-            method: 'GET',
-            url: `http://localhost:3000/votes?candidate=${fName}`,
-            data:{fName},
-            success: function(res){
-                if(res.length){
-                    let id = res[0].id;
-                    let addVotes = parseInt(res[0].votes) + 1;
-                    $.ajax({
-                        type: 'PATCH',
-                        url: `http://localhost:3000/votes/${id}`,
-                        data: {
-                            votes: addVotes
-                        }
-                    })
-                }else{
-                    $.ajax({
-                        method: 'POST',
-                        url: 'http://localhost:3000/votes',
-                        data: {
-                            candidate: fName,
-                            votes: 1
-                        }
-                    })
-                }
+          method: 'GET',
+          url: `http://localhost:3000/votes?candidate=${fName}`,
+          data: { fName },
+          success: function(res) {
+            if (res.length) {
+              let id = res[0].id;
+              let addVotes = parseInt(res[0].votes) + 1;
+              $.ajax({
+                type: 'PATCH',
+                url: `http://localhost:3000/votes/${id}`,
+                data: {
+                  votes: addVotes,
+                },
+              });
+            } else {
+              $.ajax({
+                method: 'POST',
+                url: 'http://localhost:3000/votes',
+                data: {
+                  candidate: fName,
+                  votes: 1,
+                },
+              });
             }
-        })
+          },
+        });
       });
     },
   });
@@ -158,7 +158,9 @@ $(document).ready(function() {
         const fullname = $('<h5>')
           .addClass('card-title')
           .text(candidate.fullname);
-        const party = $('<p>').addClass('card-text').text(candidate.party);
+        const party = $('<p>')
+          .addClass('card-text')
+          .text(candidate.party);
         const edit = $('<button>')
           .addClass('editBtn')
           .addClass('card-link')
@@ -173,7 +175,7 @@ $(document).ready(function() {
           .append(fullname)
           .append(party)
           .append(edit)
-          .append(del)
+          .append(del);
       });
       $('.editBtn').click(function() {
         let name = $(this)
@@ -183,36 +185,60 @@ $(document).ready(function() {
         $.ajax({
           method: 'GET',
           url: `http://localhost:3000/candidates?fullname=${fName}`,
-          data:{fName},
-          success: function(res){
-              if(res.length){
-                  let id = res[0].id;
-                  let fullname = $('#fullname').val();
-                  let party = $('#party').val();
-                  let values = {
-                    fullname: res[0].fullname,
-                    party: res[0].party
-                  };
-                  // $.ajax({
-                  //     type: 'PATCH',
-                  //     url: `http://localhost:3000/candidates/${id}`,
-                  //     data: {
-                  //         votes: addVotes
-                  //     }
-                  // })
-              }else{
-                  // $.ajax({
-                  //     method: 'POST',
-                  //     url: 'http://localhost:3000/votes',
-                  //     data: {
-                  //         candidate: fName,
-                  //         votes: 1
-                  //     }
-                  // })
-              }
-          }
-        })
-      })
-    }
-  })
+          data: { fName },
+          success: function(res) {
+            if (res.length) {
+              let id = res[0].id;
+              let fullname = $('#fullname').val();
+              let party = $('#party').val();
+              let values = {
+                fullname: res[0].fullname,
+                party: res[0].party,
+              };
+              // $.ajax({
+              //     type: 'PATCH',
+              //     url: `http://localhost:3000/candidates/${id}`,
+              //     data: {
+              //         votes: addVotes
+              //     }
+              // })
+            } else {
+              // $.ajax({
+              //     method: 'POST',
+              //     url: 'http://localhost:3000/votes',
+              //     data: {
+              //         candidate: fName,
+              //         votes: 1
+              //     }
+              // })
+            }
+          },
+        });
+      });
+      $('.delBtn').click(function() {
+        let card = $(this)
+          .prev()
+          .prev();
+        let party = card[0].innerHTML;
+        $.ajax({
+          method: 'GET',
+          url: `http://localhost:3000/candidates?party=${party}`,
+          data: { party },
+          success: function(res) {
+            if (res.length) {
+              let id = res[0].id;
+              console.log(id);
+              $.ajax({
+                type: 'DELETE',
+                url: `http://localhost:3000/candidates/${id}`,
+                success: function() {
+                  $('#delCheck').html('Candidate deleted successfully');
+                },
+              });
+            }
+          },
+        });
+      });
+    },
+  });
 });
