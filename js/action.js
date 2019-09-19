@@ -161,12 +161,19 @@ $(document).ready(function() {
         const party = $('<p>').addClass('card-text').text(candidate.party);
         const edit = $('<button>')
           .addClass('editBtn')
+          .addClass('card-link')
           .addClass('btn btn-primary')
           .text('Edit Candidate');
+        const del = $('<button>')
+          .addClass('delBtn')
+          .addClass('card-link')
+          .addClass('btn btn-danger')
+          .text('Delete');
         $('#card2')
           .append(fullname)
           .append(party)
           .append(edit)
+          .append(del)
       });
       $('.editBtn').click(function() {
         let name = $(this)
@@ -186,7 +193,6 @@ $(document).ready(function() {
                     fullname: res[0].fullname,
                     party: res[0].party
                   };
-                  // $('editForm').;
                   // $.ajax({
                   //     type: 'PATCH',
                   //     url: `http://localhost:3000/candidates/${id}`,
